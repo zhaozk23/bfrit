@@ -173,11 +173,13 @@ fn interpret(ops: &[Op]) {
                 }
                 ip += 1;
             }
-            Op::Input(_) => {
+            Op::Input(cnt) => {
                 std::io::stdout().flush().unwrap();
-                let mut buffer = [0u8; 1];
-                std::io::stdin().read_exact(&mut buffer).unwrap();
-                memory[head] = buffer[0];
+                for _ in 0..cnt {
+                    let mut buffer = [0u8; 1];
+                    std::io::stdin().read_exact(&mut buffer).unwrap();
+                    memory[head] = buffer[0];
+                }
                 ip += 1;
             }
             Op::Output(cnt) => {
