@@ -140,7 +140,7 @@ fn parse(code: &str) -> Result<Vec<Op>, ()> {
     Ok(ops)
 }
 type Code = extern "C" fn(*mut u8);
-#[allow(dead_code)]
+
 fn interpret(ops: &[Op]) {
     let mut memory = vec![0u8];
     let mut head = 0;
